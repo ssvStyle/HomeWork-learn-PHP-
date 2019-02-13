@@ -32,19 +32,20 @@
                 <form action="" method="GET">
 
                     A: <input type="text" name="firstNumber" id="inputSize" size="2"><br>
-                    <input type="radio" name="operation" value="A_plus_B" checked="checked">+<br>
+                    <input type="radio" name="operation" value="A_plus_B" >+<br>
                             <input type="radio" name="operation" value="A_minus_B">-<br>
                             <input type="radio" name="operation" value="A_multiplyBy_B">*<br>
                             <input type="radio" name="operation" value="A_divideBy_B">/<br>
                     B: <input type="text" name="secondNumber" id="inputSize" size="2"><br>
                     
                     
-                    <br><button type="submit">=</button><br><br><b>Результат:</b><br><br>
-                         <?php if (emptyVariableCheck($_GET['firstNumber'], $_GET['secondNumber']) && operationChecking($_GET['operation']) && numericCheck($_GET['firstNumber']) && numericCheck($_GET['secondNumber'])) {
+                    <br><button type="submit" value="send">=</button><br><br><b>Результат:</b><br><br>
+                    
+                         <?php if (CheckingAllArguments($_GET)) {
+                             
                                 echo $_GET['operation']($_GET['firstNumber'], $_GET['secondNumber']);
-                         } else { ?>
-                    <b class="warning">Ошибка:<br>Пустые поля, текст или не отмеченна операция!!!</b>
-                         <?php } ?>
+                                
+                             }?>
                 </form>
             
             </div>
