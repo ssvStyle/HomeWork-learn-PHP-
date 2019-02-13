@@ -45,7 +45,11 @@
                              
                                 echo $_GET['operation']($_GET['firstNumber'], $_GET['secondNumber']);
                                 
-                             }?>
+                             } elseif (CheckingAllArguments($_GET) || !empty($_GET)) { ?>
+                    
+                    <b class="warning">Ошибка: <br> Пустые строки, текст или не выбрана операция!!!</b>
+                    
+                             <?php } ?>
                 </form>
             
             </div>
