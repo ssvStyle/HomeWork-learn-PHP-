@@ -52,3 +52,15 @@ function CheckingAllArguments($array) {//Checking All Arguments
     }
     
 }
+
+function getImagelist() {
+    
+    return array_diff(scandir('img/gallery'), ['..', '.']);
+}
+
+function getImageById($id) {
+    
+    $imageList = getImagelist();
+    return $imageList[$id];
+    
+}

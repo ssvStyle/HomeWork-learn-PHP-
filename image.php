@@ -29,8 +29,12 @@
         
         <!-- ^^^^Menu^^^^^-->
         
-        <div class="nav justify-content-center">
-        <h4>Большое изображение</h4>
+        <div class="col">
+            
+            <h4 class="text-center">Большое изображение</h4>
+            
+            <img class="img-fluid rounded mx-auto d-block" width="900 " src="/HomeWork/img/gallery/<?php echo getImageById($_GET['id']);?>" alt="image">
+        
         </div>
     </body>
     

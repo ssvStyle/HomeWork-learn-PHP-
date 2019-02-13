@@ -31,7 +31,7 @@
             <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
               <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item active">
-                  <a class="nav-link" href="#!">Главная<span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="index.php">Главная<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item active">
                   <a class="nav-link" href="#!">Гостевая книга<span class="sr-only">(current)</span></a>
@@ -43,7 +43,7 @@
             </div>
         </nav>
         
-        <div class="container">
+        <div class="container text-dark">
             <div class="row">
                 <div class="col">
             
@@ -87,7 +87,17 @@
                     </div>
                     <div class="col">
                             <h4 class="text-center">Галерея</h4>
+                            
+                            <?php $imageList = getImagelist();
+                            
+                                        foreach ($imageList as $key => $value) { ?>
+                            
+                            <a href="image.php?id=<?php echo $key;?>"><img class="img-thumbnail" width="120px" src="/HomeWork/img/gallery/<?php echo $value;?>" alt="image"></a>
+                                        
+                                <?php } ?>
+                            
                     </div>
+                
                 </div>
             </div>
         <hr>
