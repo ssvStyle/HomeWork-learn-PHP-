@@ -32,7 +32,7 @@
                 <form action="" method="GET">
 
                     A: <input type="text" name="firstNumber" id="inputSize" size="2"><br>
-                    <input type="radio" name="operation" value="A_plus_B" >+<br>
+                            <input type="radio" name="operation" value="A_plus_B" >+<br>
                             <input type="radio" name="operation" value="A_minus_B">-<br>
                             <input type="radio" name="operation" value="A_multiplyBy_B">*<br>
                             <input type="radio" name="operation" value="A_divideBy_B">/<br>
@@ -49,7 +49,7 @@
                 </form>
             
             </div>
-        
+        <hr>
     </body>
     
 </html>
