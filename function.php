@@ -45,11 +45,8 @@ function operationChecking($operation) {
 
 function CheckingAllArguments($array) {//Checking All Arguments
     
-    if (!empty($array)) {
-            
             return emptyVariableCheck($array['firstNumber'], $array['secondNumber']) && numericCheck($array['firstNumber']) && numericCheck($array['secondNumber']) && operationChecking($array['operation']);
-            
-    }
+        
     
 }
 
