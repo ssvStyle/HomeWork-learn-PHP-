@@ -1,0 +1,48 @@
+************************************************** ******************* <3.0> *************************** ************************************************** ************************************************** *
+    1. Write a calculator program
+            a. The form for entering two numbers, choosing the sign of the operation and the "equal" button
+            b. Let the data be transferred by the GET method from the form (yes, it is possible and so!) To the script, which will accept them and output the expression and its result
+            c *. Try to improve the program. Let the data be sent to the same page in PHP, the entered numbers will remain in the input,
+                and the result will appear after the "equal" button
+    2. Create a primitive two-page photo gallery
+            a. Let 3-4 images be displayed on the main gallery page.
+            b. Let each of them be a link of the form /image.php?id=42, where 42 is the conditional number of the image
+            c. On the page image.php you understand by number what image to display in the browser and display it.
+               I expect that for this item of the program you will create an array of the form [1 => 'cat.jpg', 2 ​​=> 'dog.jpg', ...], however you can
+               propose another solution. By the way, you use the same array in point 1 - for displaying images!
+************************************************** ******************* <4.0> *************************** ************************************************** ************************************************** *
+    1. We make a guest book. Algorithm:
+            1. Create a text file that will contain guest entries. One line - one record. Fill out the file with 2-3 records.
+            2. Write a function that will read this file and return an array of guestbook entries.
+            3. Make a page where the guestbook will be displayed. Use the function from step 2
+            4. At the end of the page, make a form to add a new entry to the guest book.
+            5. The script handler, accepting data from the form of clause 4, must receive an array of already existing guest records, add a new element to this array (text from the form) and write the resulting array into the same file, separating the elements with a newline character
+            6 *. After completing its work, the script from point 5 should redirect the client to the main guestbook page.
+
+    2. On the basis of the code learned in the lesson, make a simple photo gallery:
+            1. A script that displays images from a specific folder on the server to the browser
+            2. Form and script upload a new image in this folder
+    3. Solve the problem of downloading the file from the user to the specified location on the server with the same file name that he had on the user's computer.
+    four*. Solve the problem of limiting downloads, for example - only JPEG and PNG files
+************************************************** ******************* <5.0> *************************** ************************************************** ************************************************** *
+    We build an authorization system on our website:
+
+    1. First, create some useful functions and select them into a separate file:
+            1. The getUsersList () function let returns an array of all users and their password hashes
+            2. The existsUser ($ login) function checks if a user exists with the specified login?
+            3. The checkPassword function ($ login, $ password) is allowed to return true when there is a user with the specified login and the password entered by him has passed the test.
+    2. Add a getCurrentUser () function that returns either the name of the user logged into the site, or null
+    3. Add to the project a login.php page, which:
+            1. IF the user has already logged in (see point 2), THEN redirect to the main page
+            2. IF the user is not logged in - displays the login form
+            3. IF the data is entered into the login form - we check it (see clause 1.3) and IF the check is passed, THEN we remember the information about the logged in user
+    4. Modify your project: allow only authorized users to upload images to the gallery, keep a log (write to the file) with data: who downloaded when and which image
+************************************************** ******************* <6.0> **************************** ************************************************** ************************************************** *
+    We modify the previous homework in accordance with new knowledge:
+
+    1. Create a GuestBook class that will meet the following requirements:
+            1. The path to the file with the guestbook data is transferred to the constructor, while data from it is read from it (use the protected property of the object to store data)
+            2. The getData () method returns an array of guestbook entries.
+            3. The append ($ text) method adds a new record to an array of records.
+            4. The save () method saves an array to a file.
+    2 *. Think over which parts of the function

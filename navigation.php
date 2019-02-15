@@ -8,7 +8,7 @@
                     <a class="nav-link" href="index.php">Главная<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item active">
-                  <a class="nav-link" href="#!">Гостевая книга<span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="GuestBook.php">Гостевая книга<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link disabled" href="#!">Disabled</a>

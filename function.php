@@ -1,5 +1,8 @@
 <?php
 
+
+define("GUESTBOOK_DB", __DIR__ . "/guestbook.db");
+
           
 function A_plus_B($a, $b) {//A plus B
     
@@ -59,5 +62,37 @@ function getImageById($id) {
     
     $imageList = getImagelist();
     return $imageList[$id];
+    
+}
+
+function getAllNotesFromGuestbookDB() {
+    
+        $note = fopen(GUESTBOOK_DB, 'r');
+        
+        while (!feof($note)) {
+            
+            $rezult[] = fgets($note);
+                
+        }
+        
+        fclose($note);
+        
+    return $rezult;
+    
+}
+
+function writeNewNoteToGuestbookDB($newNote) {
+    
+        $file = fopen(GUESTBOOK_DB, 'w');
+        
+        fwrite($file, $newNote);
+        
+        fclose($file);
+    
+}
+
+function lineLength($Line) {
+    
+    return mb_strlen($Line) > 5;
     
 }

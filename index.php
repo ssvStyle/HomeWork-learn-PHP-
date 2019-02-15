@@ -42,12 +42,6 @@
                     
                     <button type="submit" class="btn btn-outline-info">=</button><br><br>
                     
-                    <!--
-                    1. 3 переменных
-                    2. предача из GET[] в переменные
-                    3. проверка каждой пременной
-                    -->
-                    
                     <?php 
                     
                     $firstNumber = isset($_GET['firstNumber']) ? htmlspecialchars(trim($_GET['firstNumber'])) : '';
