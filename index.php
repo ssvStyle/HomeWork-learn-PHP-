@@ -19,7 +19,7 @@
             
                 <form action="" method="GET">
 
-                    <input type="text" name="firstNumber" class="form-control" placeholder="A: ">
+                    <input type="text" name="firstNumber" class="form-control" placeholder="A: " value="<?php   echo isset($_GET['firstNumber']) ? htmlspecialchars(trim($_GET['firstNumber'])) : '';?>">
                     <div class="custom-control custom-radio">
                             <input type="radio" id="customRadio1" name="operation" value="A_plus_B" class="custom-control-input">
                             <label class="custom-control-label" for="customRadio1">+</label>
@@ -37,7 +37,7 @@
                             <label class="custom-control-label" for="customRadio4">/</label>
                     </div>
                    
-                    <input type="text" name="secondNumber" id="inputSize" size="2" class="form-control" placeholder="B: "><br>
+                    <input type="text" name="secondNumber" id="inputSize" size="2" class="form-control" placeholder="B: " value="<?php   echo isset($_GET['secondNumber']) ? htmlspecialchars(trim($_GET['secondNumber'])) : '';?>"><br>
                     
                     
                     <button type="submit" class="btn btn-outline-info">=</button><br><br>
