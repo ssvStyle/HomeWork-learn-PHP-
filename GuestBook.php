@@ -81,31 +81,28 @@
                  * 
                  *                  */
                     $newNote = !empty($_POST['text']) ? htmlspecialchars(trim($_POST['text'])) : '';
-                    
-                    //lineLength($newNote);
+                    $result = isset($_GET['result']) ? $_GET['result'] : '';
                     
                     if (lineLength($newNote)) { addNewNoteTooGuestbookDB($newNote) ?>
                     
-                        <div class="row col-md-6 alert alert-success h-25 mx-0 justify-content-center" role="alert">Запись добавленна))</div>
+                        
+                        <meta http-equiv="refresh" content="0; url=GuestBook.php?result=ok" />
+                    
+                    <?php } elseif (isset($_POST['text']) || $newNote == '') { ?>
+     
+                        <meta http-equiv="refresh" content="0; url=GuestBook.php?result=error" />
                     
                     <?php } ?>
-
-
-                    //$result = isset($_GET['result']) ? $_GET['result'] : '';
                     
-                    if (isset($_POST['text'])) { 
+                    <?php if ($result == 'ok') { ?>
                         
-                        var_dump($_POST);
-                        
-                    }?>
+                        <div class="row col-md-6 alert alert-success h-25 mx-0 justify-content-center" role="alert">Запись добавленна))</div>
                     
-                        <!--<div class="row col-md-6 alert alert-success h-25 mx-0 justify-content-center" role="alert">Запись добавленна))</div>-->
+                    <?php } elseif ($result === 'error') { ?>
                     
-                    <?php //} elseif ($result === 'error') { ?>
+                        <div class="row col-md-6 alert alert-warning h-25 mx-0 p-2" role="alert">Ошибка: Пустое поле или слишком короткое....</div>
                     
-                        <!--<div class="row col-md-6 alert alert-warning h-25 mx-0 p-2" role="alert">Ошибка: Пустое поле или слишком короткое....</div>-->
-                    
-                    <?php //} ?>
+                    <?php } ?>
                     
                 </div>
                 </div>
