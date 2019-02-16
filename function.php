@@ -81,13 +81,25 @@ function getAllNotesFromGuestbookDB() {
     
 }
 
+function addNewNoteTooGuestbookDB($newNote) {
+    
+        $allNotes = getAllNotesFromGuestbookDB();
+
+        $allNotes[] =  PHP_EOL . $newNote;
+
+        return writeNewNoteToGuestbookDB(implode($allNotes));
+    
+}
+
 function writeNewNoteToGuestbookDB($newNote) {
     
         $file = fopen(GUESTBOOK_DB, 'w');
         
-        fwrite($file, $newNote);
+        $fwriteRezult = fwrite($file, $newNote);
         
         fclose($file);
+        
+        return $fwriteRezult;
     
 }
 

@@ -15,9 +15,9 @@
             <div class="row justify-content-center">
                 <div class="col-md-12 offset-6">
                 <?php
-                $allNotes = getAllNotesFromGuestbookDB();
                 
-                foreach ($allNotes as $note) { ?>
+                
+                foreach (getAllNotesFromGuestbookDB() as $note) { ?>
                     
                     <div class="media col-md-6 border box my-1 pl-0 p-1">
 
@@ -39,7 +39,7 @@
                 
                 <div class="row col-md-6 pl-0 pr-0">
                     
-                    <form action="addNewNote.php" method="POST" class="col-md-6">
+                    <form action="GuestBook.php" method="POST" class="col-md-6">
                         
                     <div class="form-group col-md-6 pl-0">
                     <label for="formGroupExampleInput">Ваше имя</label>
@@ -62,17 +62,50 @@
                   
                 </form>
                     
-                    <?php $result = isset($_GET['result']) ? $_GET['result'] : '';
+                    <?php 
+                    /*
+
+                 *  1. Принять новый msj здесь же
+                 *  2. Обработать на этой же странице
+                 *  3. Убрать отправку ошибки через GET
+                 *  4. Добавить фун-ю которя возвращает ошибку
+                 * 
+                 * 
+                 * 
+                 * 
+                 * 
+                 * 
+                 * 
+                 * 
+                 * 
+                 * 
+                 *                  */
+                    $newNote = !empty($_POST['text']) ? htmlspecialchars(trim($_POST['text'])) : '';
                     
-                    if ($result === 'ok') { ?>
+                    //lineLength($newNote);
+                    
+                    if (lineLength($newNote)) { addNewNoteTooGuestbookDB($newNote) ?>
                     
                         <div class="row col-md-6 alert alert-success h-25 mx-0 justify-content-center" role="alert">Запись добавленна))</div>
                     
-                    <?php } elseif ($result === 'error') { ?>
-                    
-                        <div class="row col-md-6 alert alert-warning h-25 mx-0 p-2" role="alert">Ошибка: Пустое поле или слишком короткое....</div>
-                    
                     <?php } ?>
+
+
+                    //$result = isset($_GET['result']) ? $_GET['result'] : '';
+                    
+                    if (isset($_POST['text'])) { 
+                        
+                        var_dump($_POST);
+                        
+                    }?>
+                    
+                        <!--<div class="row col-md-6 alert alert-success h-25 mx-0 justify-content-center" role="alert">Запись добавленна))</div>-->
+                    
+                    <?php //} elseif ($result === 'error') { ?>
+                    
+                        <!--<div class="row col-md-6 alert alert-warning h-25 mx-0 p-2" role="alert">Ошибка: Пустое поле или слишком короткое....</div>-->
+                    
+                    <?php //} ?>
                     
                 </div>
                 </div>
