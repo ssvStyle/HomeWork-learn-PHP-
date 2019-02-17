@@ -69,7 +69,9 @@
                         $newNote = !empty($_POST['text']) ? htmlspecialchars(trim($_POST['text'])) : '';
                         $result = isset($_GET['result']) ? $_GET['result'] : '';
                     
-                    if (lineLength($newNote)) { addNewNoteTooGuestbookDB($newNote) ?>
+                    if (lineLength($newNote)) { 
+                        
+                        addNewNoteTooGuestbookDB($newNote) ?>
                     
                         <meta http-equiv="refresh" content="0; url=GuestBook.php?result=ok" />
                     

@@ -3,26 +3,27 @@
 
 define("GUESTBOOK_DB", __DIR__ . "/guestbook.db");
 
-          
-function A_plus_B($a, $b) {//A plus B
+/****************Calculator start****************/
+
+function A_plus_B($a, $b) {//A + B
     
     return $a . ' + ' . $b . ' = ' . ($a + $b);
     
 }
 
-function A_minus_B($a, $b) {//A minus B
+function A_minus_B($a, $b) {//A - B
     
     return $a . ' - ' . $b . ' = ' . ($a - $b);
     
 }
 
-function A_multiplyBy_B($a, $b) { //A multiply by B
+function A_multiplyBy_B($a, $b) { //A * B
     
     return $a . ' * ' . $b . ' = ' . ($a * $b);
     
 }
 
-function A_divideBy_B($a, $b) { //A divide by B
+function A_divideBy_B($a, $b) { //A / B
     
     return $a . ' / ' . $b . ' = ' . ($a / $b);
     
@@ -30,28 +31,29 @@ function A_divideBy_B($a, $b) { //A divide by B
 
 function emptyVariableCheck($a, $b) {
     
-   return !empty($a) && !empty($b);
+   return !empty($a) || !empty($b);
     
 }
 
-function numericCheck($variable) {
+function numericCheck($a, $b) {
     
-    return is_numeric($variable);
-    
-}
-
-function operationChecking($operation) {
-    
-    return !empty($operation);
+    return is_numeric($a) && is_numeric($b);
     
 }
 
-function CheckingAllArguments($array) {//Checking All Arguments
+function CheckAllArguments($a, $b, $operation) {//Checking All Arguments
     
-            return emptyVariableCheck($array['firstNumber'], $array['secondNumber']) && numericCheck($array['firstNumber']) && numericCheck($array['secondNumber']) && operationChecking($array['operation']);
+        //$a = $argsArray['firstNumber'];
+        //$b = $argsArray['secondNumber'];
+        //$operation = $argsArray['operation'];
+    
+            return emptyVariableCheck($a, $b) && numericCheck($a, $b) && !empty($operation);
         
-    
 }
+
+/****************Calculator end****************/
+
+/****************gallery start****************/
 
 function getImagelist() {
     
@@ -64,6 +66,10 @@ function getImageById($id) {
     return $imageList[$id];
     
 }
+
+/****************Gallery end****************/
+
+/****************Guestbook start****************/
 
 function getAllNotesFromGuestbookDB() {
     
@@ -103,8 +109,26 @@ function writeNewNoteToGuestbookDB($newNote) {
     
 }
 
+/****************Guestbook end****************/
+
+/****************Img upload start****************/
+
 function lineLength($Line) {
     
     return mb_strlen($Line) > 5;
     
 }
+
+function fileExist($file) {
+    
+    return (!empty($file["name"]) && !empty($file["type"]) && !empty($file["size"]) );
+    
+}
+
+function checkFileType($file) {
+    
+    return ($file["type"] == 'image/png' ||  $file["type"] == 'image/jpeg');
+    
+}
+
+/****************Img upload end****************/
