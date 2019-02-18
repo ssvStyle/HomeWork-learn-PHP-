@@ -40,23 +40,23 @@
                     <input type="text" name="secondDigit" id="inputSize" size="2" class="form-control" placeholder="B: " value="<?php   echo isset($_GET['secondDigit']) ? htmlspecialchars(trim($_GET['secondDigit'])) : '';?>"><br>
                     
                     
-                    <button type="submit" class="btn btn-outline-info">=</button><br><br>
+                    <button type="submit" name="Calculator" class="btn btn-outline-info">=</button><br><br>
                     
                         <?php //**************************errors and the result of the calculator start**************************
                     
                         $firstDigit = isset($_GET['firstDigit']) ? htmlspecialchars(trim($_GET['firstDigit'])) : '';
+                        
                         $secondDigit = isset($_GET['secondDigit']) ? htmlspecialchars(trim($_GET['secondDigit'])) : '';
-                        $nameOfOperation = isset($_GET['operation']) ? htmlspecialchars(trim($_GET['operation'])) : '';
-                    
-                        $inbox = ['firstDigit' => $firstDigit, 'secondDigit' => $secondDigit, 'operation' => $nameOfOperation];
                         
+                        $nameOfOperation = isset($_GET['operation']) ? htmlspecialchars(trim($_GET['operation'])) : FALSE;
                         
+                        $resultCheck = emptyAndTypeVariableCheck($firstDigit, $secondDigit) && !empty($nameOfOperation);
                         
-                        if (CheckAllArguments($firstDigit, $secondDigit, $nameOfOperation)) { ?>
+                        if ($resultCheck) { ?>
 
                         <div class="alert alert-success" role="alert"> <h4>Результат: </h4><?php echo $nameOfOperation($firstDigit, $secondDigit); ?> </div>
 
-                        <?php } elseif (CheckAllArguments($firstDigit, $secondDigit, $nameOfOperation) || !empty($_GET)) { ?>
+                        <?php } elseif (isset($_GET['Calculator'])) { ?>
 
                             <div class="alert alert-warning" role="alert">Ошибка: <br> Пустые строки, текст или не выбрана операция!!</div>
 
@@ -99,7 +99,7 @@
                     
                             if ($result == 'error') { ?>
                             
-                                <div class="alert alert-warning" role="alert">Ошибка: <br> Неверный формат или не добавлен файл!!!</div>
+                                <br><div class="alert alert-warning" role="alert">Ошибка: <br> Неверный формат или не добавлен файл!!!</div>
                             
                        <?php }//**************************check for file upload errors end**************************?>
                                 

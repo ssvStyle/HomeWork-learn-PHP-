@@ -29,26 +29,10 @@ function A_divideBy_B($a, $b) { //A / B
     
 }
 
-function emptyVariableCheck($a, $b) {
+function emptyAndTypeVariableCheck($a, $b) {
     
-   return !empty($a) || !empty($b);
+   return !empty($a) && !empty($b) && is_numeric($a) && is_numeric($b);
     
-}
-
-function numericCheck($a, $b) {
-    
-    return is_numeric($a) && is_numeric($b);
-    
-}
-
-function CheckAllArguments($a, $b, $operation) {//Checking All Arguments
-    
-        //$a = $argsArray['firstNumber'];
-        //$b = $argsArray['secondNumber'];
-        //$operation = $argsArray['operation'];
-    
-            return emptyVariableCheck($a, $b) && numericCheck($a, $b) && !empty($operation);
-        
 }
 
 /****************Calculator end****************/
