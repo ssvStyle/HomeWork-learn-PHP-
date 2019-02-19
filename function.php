@@ -29,9 +29,15 @@ function A_divideBy_B($a, $b) { //A / B
     
 }
 
-function emptyAndTypeVariableCheck($a, $b) {
+function emptyVariableCheck($a, $b) {
     
-   return !empty($a) && !empty($b) && is_numeric($a) && is_numeric($b);
+   return !empty($a) && !empty($b);
+    
+}
+
+function typeVariableCheck($a, $b){
+    
+    return is_numeric($a) && is_numeric($b);
     
 }
 

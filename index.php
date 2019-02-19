@@ -48,9 +48,9 @@
                         
                         $secondDigit = isset($_GET['secondDigit']) ? htmlspecialchars(trim($_GET['secondDigit'])) : '';
                         
-                        $nameOfOperation = isset($_GET['operation']) ? htmlspecialchars(trim($_GET['operation'])) : FALSE;
+                        $nameOfOperation = isset($_GET['operation']) ? htmlspecialchars(trim($_GET['operation'])) : '';
                         
-                        $resultCheck = emptyAndTypeVariableCheck($firstDigit, $secondDigit) && !empty($nameOfOperation);
+                        $resultCheck = emptyVariableCheck($firstDigit, $secondDigit) && typeVariableCheck($firstDigit, $secondDigit) && function_exists($nameOfOperation);
                         
                         if ($resultCheck) { ?>
 
