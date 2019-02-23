@@ -67,7 +67,7 @@
                     
                     <?php 
                         $newNote = !empty($_POST['text']) ? htmlspecialchars(trim($_POST['text'])) : '';
-                        $result = isset($_GET['result']) ? $_GET['result'] : '';
+                        $result = isset($_GET['result']) ?? 0;
                     
                     if (lineLength($newNote)) { 
                         
