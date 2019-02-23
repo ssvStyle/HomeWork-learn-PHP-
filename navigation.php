@@ -14,10 +14,24 @@
                   <a class="nav-link disabled" href="#!">Disabled</a>
                 </li>
               </ul>
+                
+                <?php if(isset($_SESSION['id']) && isset($_SESSION['name'])) {?>
+                
+                <ul class="nav justify-content-end">
+                    <li class="nav-item">
+                        <p>Здравствуйте:  <?php echo $_SESSION['name']; ?></p>
+                    </li>
+                  </ul>
+                
+                <?php } else { ?>
+                
                 <ul class="nav justify-content-end">
                     <li class="nav-item">
                       <a class="nav-link active" href="login.php">Войти</a>
                     </li>
                   </ul>
+                
+                <?php } ?>
+                
             </div>
         </nav>

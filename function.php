@@ -241,3 +241,13 @@ function getCurrentUser() //Добавьте функцию getCurrentUser() к�
         
         fclose($note);
 }
+
+function resultAndRedirection($pathTooPage, $resultName, $result) {
+    
+    if (!empty($pathTooPage)) {
+        
+    }
+    
+    return header('Location: http://'.$_SERVER['SERVER_NAME'].'/'.$pathTooPage.'?'.$resultName.'='.$result);
+    
+}
