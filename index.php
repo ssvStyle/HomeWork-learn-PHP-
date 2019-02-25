@@ -1,6 +1,6 @@
 <?php session_start();
 include_once __DIR__ . '/function.php';
-authorizationByCookie();
+checkCookie();
 ?>
 
 <!DOCTYPE html>
@@ -18,7 +18,7 @@ authorizationByCookie();
         
         <div class="container text-dark">
             
-            <?php //authorizationByCookie();?>
+            <?php //var_dump($_COOKIE)?>
             
             
             <div class="row">

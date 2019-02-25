@@ -285,8 +285,20 @@ function getCurrentUser() //Добавьте функцию getCurrentUser() к�
             $_SESSION['name'] = $userData['name'];
             
             
-        };
+        }
     
+    }
+    
+    function checkCookie() {
+    
+        $rezult = isset($_COOKIE['uID']) && !empty($_COOKIE['uID']) && empty($_SESSION);
+        
+        if ($rezult) {
+            
+            authorizationByCookie();
+            
+        }
+        
     }
     
     

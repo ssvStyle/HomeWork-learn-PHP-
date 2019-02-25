@@ -1,6 +1,6 @@
 <?php session_start();
 include_once __DIR__ . '/function.php';
-authorizationByCookie();
+checkCookie();
 
 
 $button = isset($_POST['button']) && $_POST['button'] === 'submit';

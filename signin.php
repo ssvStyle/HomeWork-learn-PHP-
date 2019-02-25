@@ -1,8 +1,6 @@
 <?php session_start();
 include_once __DIR__ . '/function.php';
-authorizationByCookie();
-
-
+checkCookie();
 $button = isset($_POST['button']) && $_POST['button'] === 'submit';
 
     if ($button){
@@ -25,13 +23,15 @@ $button = isset($_POST['button']) && $_POST['button'] === 'submit';
                 
                 $_SESSION['id'] = sha1($userData['id']);
                 $_SESSION['name'] = $userData['name'];
-            }
-        
-            
-            if ($rememberMe && getUserIdByCookieUId() == NULL){
-                
-                setcookie('uID', sha1($userData['id']), time() + 604800);
-                
+           
+                    if ($rememberMe && getUserIdByCookieUId() == NULL){
+
+                        setcookie('uID', sha1($userData['id']), time() + 604800);
+
+                    }
+                    
+                    header(stringLocationForHeader('index.php'));
+                    
             }
         
     } else {
