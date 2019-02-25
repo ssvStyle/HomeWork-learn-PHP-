@@ -19,7 +19,10 @@
                 
                 <ul class="nav justify-content-end">
                     <li class="nav-item">
-                        <p>Здравствуйте:  <?php echo $_SESSION['name']; ?></p>
+                        <p>Здравствуйте:  <?php echo $_SESSION['name']; ?>&nbsp;</p>
+                    </li>
+                    <li class="nav-item">
+                        <p><a href="signout.php">&nbsp;Выход</a></p>
                     </li>
                   </ul>
                 

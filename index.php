@@ -18,8 +18,6 @@ checkCookie();
         
         <div class="container text-dark">
             
-            <?php //var_dump($_COOKIE)?>
-            
             
             <div class="row">
                 <div class="col">
@@ -96,7 +94,15 @@ checkCookie();
                                 
                                     <input type="file" class="form-control-file" id="exampleFormControlFile1" name="newFile"><br>
                                     
+                                        <?php if (isset($_SESSION['id'])) { ?>
+                                    
                                     <button class="btn btn-outline-primary">Загрузить</button>
+                                    
+                                        <?php } else { ?>
+                                    
+                                    <p><a href="login.php">Авторизация</a></p>
+                                    
+                                        <?php } ?>
                                     
                             </form>
                             

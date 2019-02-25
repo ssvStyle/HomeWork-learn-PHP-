@@ -1,6 +1,7 @@
 <?php session_start();
 include_once __DIR__ . '/function.php';
 checkCookie();
+
 $button = isset($_POST['button']) && $_POST['button'] === 'submit';
 
     if ($button){
@@ -13,7 +14,7 @@ $button = isset($_POST['button']) && $_POST['button'] === 'submit';
         
             if ($emptyLoginOrPass){
                 
-                header(stringLocationForHeader('login.php', 'signInError', 'emptyPassOrLogin'));
+                header(stringLocationForHeader('login.php', 'signInError', 'emptyLoginOrPass'));
                 
             }
         
@@ -32,7 +33,13 @@ $button = isset($_POST['button']) && $_POST['button'] === 'submit';
                     
                     header(stringLocationForHeader('index.php'));
                     
+            } else {
+                
+                header(stringLocationForHeader('login.php', 'signInError', 'wrongLoginOrPass'));
+                
             }
+            
+            
         
     } else {
         
