@@ -1,5 +1,7 @@
-<?php session_start();?>
-<!--if (isset($_REQUEST[session_name()])) session_start();-->
+<?php session_start();
+include_once __DIR__ . '/function.php';
+authorizationByCookie();
+?>
 <!DOCTYPE html>
 <!---->
 <html>
@@ -19,7 +21,7 @@
                 
                 <div class="col-md-4">
                     
-                    <form action="auth.php" method="POST" class="form-signin">
+                    <form action="signin.php" method="POST" class="form-signin">
                     
                     <img class="mb-4" src="/docs/4.2.1/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
                   

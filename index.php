@@ -1,4 +1,8 @@
-<?php session_start();?>
+<?php session_start();
+include_once __DIR__ . '/function.php';
+authorizationByCookie();
+?>
+
 <!DOCTYPE html>
 <!---->
 <html>
@@ -7,12 +11,16 @@
         <title>Главная</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     </head>
-                        <?php include_once __DIR__ . '/function.php';?>
+                        
     <body>
         
                         <?php include_once __DIR__ . '/navigation.php';?>
         
         <div class="container text-dark">
+            
+            <?php //authorizationByCookie();?>
+            
+            
             <div class="row">
                 <div class="col">
             

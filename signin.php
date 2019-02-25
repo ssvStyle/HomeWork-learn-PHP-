@@ -1,10 +1,9 @@
 <?php session_start();
-
 include_once __DIR__ . '/function.php';
+authorizationByCookie();
 
-var_dump($_POST);
 
-$button = $_POST['button'] === 'submit';
+$button = isset($_POST['button']) && $_POST['button'] === 'submit';
 
     if ($button){
         
@@ -16,7 +15,7 @@ $button = $_POST['button'] === 'submit';
         
             if ($emptyLoginOrPass){
                 
-                echo 'login or pass empty';
+                header(stringLocationForHeader('login.php', 'signInError', 'emptyPassOrLogin'));
                 
             }
         
@@ -29,20 +28,14 @@ $button = $_POST['button'] === 'submit';
             }
         
             
-            if ($rememberMe){
+            if ($rememberMe && getUserIdByCookieUId() == NULL){
                 
                 setcookie('uID', sha1($userData['id']), time() + 604800);
                 
             }
-        echo '<pre>';
-        var_dump($_SESSION);
-        echo '</pre>';
         
-        /*
-        echo $login.'<br>';
-        echo $pass.'<br>';
-        echo $rememberMe.'<br>';
-        var_dump(сheckPassword($login,$pass));*/
+    } else {
         
+        header(stringLocationForHeader('login.php'));
         
     }

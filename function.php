@@ -209,6 +209,25 @@ function getUserInfo($login) //Функция getUserInfo($login) возвращ
     
 }
 
+function getUserDataByID($id) //Функция getUserInfo($login) возвращает массив с данными пользователя или false
+{
+        $users = getUsersList(); //пеередаем в переменную массив пользователей и их паролей
+        
+            foreach ( $users as $value ) { //пребераем массив
+        
+                    $userData = explode('-|-', $value); //Рзабиваем строку на ид логин имя и хеш пароля
+
+                if ($id === $userData[0]) { //сравниваем полученный логин с тем который в БД
+
+                    return ['id' => $userData[0], 'name' => $userData[1]]; //возвращяем массив
+
+                }
+            
+            }
+    
+    
+}
+
 function getCurrentUser() //Добавьте функцию getCurrentUser() которая возвращает либо имя вошедшего на сайт пользователя, либо null
     {
         if (isset($_SESSION['name']) && !empty($_SESSION['name'])) {
@@ -224,6 +243,51 @@ function getCurrentUser() //Добавьте функцию getCurrentUser() к�
     
 /****************Authorization end****************/
     
+    
+    function getCookieUid() {
+        
+        $uId = $_COOKIE['uID'] ?? FALSE;
+        
+        return $uId;
+        
+    }
+    
+    function getUserIdByCookieUId(){//Функция existsUser($login) проверяет - существует ли пользователь с заданным id?
+    
+        $uID = getCookieUid();
+        
+        $id = FALSE;
+        
+        $users = getUsersList();//пеередаем в переменную массив данных пользователей
+
+            foreach ( $users as $value ) {//пребераем массив
+
+                $userID = explode('-|-', $value);//Рзабиваем строку значения
+
+                    if ($uID === $userID[4]) {//сравниваем полученный id с тем который в БД
+
+                        $id = $userID[0]; //возвращаем id если найденно совпадение
+
+                    }
+            }
+            
+            return $id;
+    
+    }
+    
+    function authorizationByCookie() {
+        
+        if (getUserIdByCookieUId()) {
+            
+            $userData = getUserDataByID(getUserIdByCookieUId());
+            
+            $_SESSION['id'] = sha1($userData['id']);
+            $_SESSION['name'] = $userData['name'];
+            
+            
+        };
+    
+    }
     
     
 /****************Authorization end****************/
@@ -242,12 +306,37 @@ function getCurrentUser() //Добавьте функцию getCurrentUser() к�
         fclose($note);
 }
 
-function resultAndRedirection($pathTooPage, $resultName, $result) {
+function stringLocationForHeader($pathTooPage, $resultName = '', $result = '') {
     
-    if (!empty($pathTooPage)) {
-        
-    }
-    
-    return header('Location: http://'.$_SERVER['SERVER_NAME'].'/'.$pathTooPage.'?'.$resultName.'='.$result);
-    
-}
+            preg_match('~\w+~', $_SERVER['REQUEST_URI'], $domen);
+            
+            //$path = 0;
+            
+            $checkPath = preg_match('~^[a-zA-Z0-9_-]*(^\s)?\.php\Z|\.html\Z]{1}~', $pathTooPage);
+            
+            $patternForResultName = '~^\w+[^\.]?(^\s)?\Z~';
+            
+            $checkResultName = preg_match($patternForResultName, $resultName);
+            
+            $checkResult = preg_match($patternForResultName, $result);
+            
+            $rezForGETParams = ($checkResultName && $checkResult);
+            
+            $allRezult  = ($checkPath && $rezForGETParams);
+            
+            if ($allRezult) {
+                
+                $path = 'Location: http://' . $_SERVER['SERVER_NAME'] . '/' . $domen[0] . '/' . $pathTooPage . '?' . $resultName . '=' . $result;
+                
+            } elseif ($checkPath) {
+                
+                $path = 'Location: http://' . $_SERVER['SERVER_NAME'] . '/' . $domen[0] . '/' . $pathTooPage;//["REQUEST_URI"]
+                
+            } else {
+                
+                $path = FALSE;
+                        
+            }
+            
+            return $path;
+        }
