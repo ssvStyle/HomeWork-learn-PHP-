@@ -101,15 +101,17 @@ function writeNewNoteToGuestbookDB($newNote) {
     
 }
 
-/****************Guestbook end****************/
-
-/****************Img upload start****************/
-
 function lineLength($Line) {
     
     return mb_strlen($Line) > 5;
     
 }
+
+/****************Guestbook end****************/
+
+/****************Img upload start****************/
+
+
 
 function fileExist($file) {
     
