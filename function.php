@@ -1,7 +1,7 @@
 <?php
 
 
-define("GUESTBOOK_DB", __DIR__ . "/guestbook.db");
+/*define("GUESTBOOK_DB", __DIR__ . "/guestbook.db");*/
 define("USERS_DB", __DIR__ . '/users.db');
 define("LOG_DB", __DIR__ . '/log.db');
 
@@ -61,71 +61,6 @@ function getImageById($id) {
 
 /****************Gallery end****************/
 
-/****************Guestbook start****************/
-
-function getAllNotesFromGuestbookDB() {
-    
-        $note = fopen(GUESTBOOK_DB, 'r');
-        
-        while (!feof($note)) {
-            
-            $rezult[] = fgets($note);
-                
-        }
-        
-        fclose($note);
-        
-    return $rezult;
-    
-}
-
-function addNewNoteTooGuestbookDB($newNote) {
-    
-        $allNotes = getAllNotesFromGuestbookDB();
-
-        $allNotes[] =  PHP_EOL . $newNote;
-
-        return writeNewNoteToGuestbookDB(implode($allNotes));
-    
-}
-
-function writeNewNoteToGuestbookDB($newNote) {
-    
-        $file = fopen(GUESTBOOK_DB, 'w');
-        
-        $fwriteRezult = fwrite($file, $newNote);
-        
-        fclose($file);
-        
-        return $fwriteRezult;
-    
-}
-
-function lineLength($Line) {
-    
-    return mb_strlen($Line) > 5;
-    
-}
-
-/****************Guestbook end****************/
-
-/****************Img upload start****************/
-
-
-
-function fileExist($file) {
-    
-    return (!empty($file["name"]) && !empty($file["type"]) && !empty($file["size"]) );
-    
-}
-
-function checkFileType($file) {
-    
-    return ($file["type"] == 'image/png' ||  $file["type"] == 'image/jpeg');
-    
-}
-
-/****************Img upload end****************/
 
 /****************user list function start****************/
 

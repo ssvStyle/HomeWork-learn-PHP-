@@ -7,26 +7,26 @@
  */
 class Uploader
 {
-    protected $fileTmpName;
+    protected $file = [];
 
 
-    public function __construct($file_tmp_name)/*$_FILES['newFile']['tmp_name']*/
+    public function __construct($file)
     {
-        $this->fileTmpName = $file_tmp_name;
+        $this->file = $file;
     }
     
     public function isUploaded()
     {
-        return is_uploaded_file($this->fileTmpName);
+        return is_uploaded_file($this->file['tmp_name']);
     }
     
     public function upload()
     {
-        $result = \FALSE;
+        $result = FALSE;
         
             if ($this->isUploaded()){
 
-                $result = move_uploaded_file();
+                $result = move_uploaded_file($this->file['tmp_name'], '/opt/lampp/htdocs/HomeWork/img/gallery/' . $this->file['name']);
 
             } 
         

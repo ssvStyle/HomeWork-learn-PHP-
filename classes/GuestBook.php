@@ -33,7 +33,7 @@ class GuestBook
     {
         $this->allNotes[] =  PHP_EOL.$newNote;
         
-        return $this->allNotes;
+        return $this;
     }
     
     public function save()

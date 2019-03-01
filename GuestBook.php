@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     </head>
         <?php include_once __DIR__ . '/function.php';?>
+        <?php include_once __DIR__ . '/autoload.php';?>
     <body>
         
         <?php include_once __DIR__ . '/navigation.php';?>
@@ -19,7 +20,9 @@
                     
                 <!--************Note block loop start************************************************-->
                     
-                <?php foreach (getAllNotesFromGuestbookDB() as $note) { ?>
+                <?php $guestBook = new GuestBook(__DIR__ . '/guestbook.db'); 
+                
+                foreach ($guestBook->getData() as $note) { ?>
                     
                     <div class="media col-md-6 border box my-1 pl-0 p-1">
 
@@ -68,26 +71,28 @@
                     
                     <?php 
                         $newNote = !empty($_POST['text']) ? htmlspecialchars(trim($_POST['text'])) : '';
-                        $result = isset($_GET['result']) ?? 0;
+                        $result = 0;
                     
-                    if (lineLength($newNote)) { 
+                    if (lineLength($newNote)) {
                         
-                        addNewNoteTooGuestbookDB($newNote) ?>
+                        $guestBook->append($newNote)->save();?>
                     
                         <meta http-equiv="refresh" content="0; url=GuestBook.php?result=ok" />
                     
                     <?php } elseif (isset($_POST['text']) || lineLength($newNote)) { ?>
                         
-                        <meta http-equiv="refresh" content="0; url=GuestBook.php?result=error" />
+                       <meta http-equiv="refresh" content="0; url=GuestBook.php?result=error" />
                     
                     <?php } ?>
                     
                     <!--************Result (Add note) block end************************************************-->
                     
                     <!--************Add note error block start************************************************-->
+                    <?php if (isset($_GET['result'])) {
+                        $result = $_GET['result'];
+                    } ?>
                         
-                        
-                    <?php if ($result == 'ok') { ?>
+                    <?php if ($result === 'ok') { ?>
                         
                         <div class="row col-md-6 alert alert-success h-25 mx-0 justify-content-center" role="alert">Запись добавленна))</div>
                     
