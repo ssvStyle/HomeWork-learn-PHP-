@@ -1,7 +1,6 @@
 <?php
 
 
-/*define("GUESTBOOK_DB", __DIR__ . "/guestbook.db");*/
 define("USERS_DB", __DIR__ . '/users.db');
 define("LOG_DB", __DIR__ . '/log.db');
 

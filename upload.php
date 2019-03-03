@@ -1,9 +1,8 @@
 <?php session_start();
 include_once __DIR__ . '/function.php';
 checkCookie();
-?>
 
-include_once __DIR__ . '/autoload.php';
+include_once __DIR__ . '/classes/Uploader.php';
 
 $file = isset($_FILES['newFile']) ? $_FILES['newFile'] : false;
 
