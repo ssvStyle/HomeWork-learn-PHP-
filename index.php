@@ -1,6 +1,7 @@
 <?php session_start();
 include_once __DIR__ . '/function.php';
 checkCookie();
+include_once __DIR__ . '/classes/Uploader.php';
 ?>
 
 <!DOCTYPE html>
@@ -13,8 +14,6 @@ checkCookie();
     </head>
                         
     <body>
-                <?php include_once __DIR__ . '/classes/Uploader.php';?>
-        
         
                     <nav class="navbar navbar-expand-lg navbar-light bg-light">
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">

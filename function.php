@@ -1,6 +1,5 @@
 <?php
 
-
 define("USERS_DB", __DIR__ . '/users.db');
 define("LOG_DB", __DIR__ . '/log.db');
 
