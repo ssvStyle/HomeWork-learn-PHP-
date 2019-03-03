@@ -178,7 +178,7 @@ function getCurrentUser() //Добавьте функцию getCurrentUser() к�
 
 /****************user lis function end****************/
     
-/****************Authorization end****************/
+/****************Authorization start****************/
     
     
     function getCookieUid() {
@@ -242,7 +242,6 @@ function getCurrentUser() //Добавьте функцию getCurrentUser() к�
     
 /****************Authorization end****************/
 
-    
     function addTooLog( $id , $name , $imageName ,  $erors = 0) {
      
         $data = PHP_EOL . time() . '-|-'. $id . '-|-' . $name . '-|-' . $imageName . '-|-' . $erors;

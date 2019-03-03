@@ -1,4 +1,7 @@
-<?php  session_start();?>
+<?php session_start();
+include_once __DIR__ . '/function.php';
+checkCookie();
+?>
 <!DOCTYPE html>
 <!---->
 <html>
@@ -73,15 +76,15 @@
                         $newNote = !empty($_POST['text']) ? htmlspecialchars(trim($_POST['text'])) : '';
                         $result = 0;
                     
-                    if (lineLength($newNote)) {
+                    if (strlen($newNote) > 5) {
                         
                         $guestBook->append($newNote)->save();?>
                     
                         <meta http-equiv="refresh" content="0; url=GuestBook.php?result=ok" />
                     
-                    <?php } elseif (isset($_POST['text']) || lineLength($newNote)) { ?>
+                    <?php } elseif (isset($_POST['text'])) { ?>
                         
-                       <meta http-equiv="refresh" content="0; url=GuestBook.php?result=error" />
+                        <meta http-equiv="refresh" content="0; url=GuestBook.php?result=error" />
                     
                     <?php } ?>
                     
