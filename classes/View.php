@@ -17,9 +17,13 @@ class View
     {
         
         if (file_exists('./templates/' . $template . '.php')){
+            include_once './templates/header.php';
             include_once './templates/' . $template . '.php';
+            include_once './templates/footer.php';
         }  else {
+            include_once './templates/header.php';
             include_once './templates/404.php';
+            include_once './templates/footer.php';
         }
         
     }
