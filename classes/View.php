@@ -7,12 +7,7 @@
 class View
 {
     protected $data = [];
-    
-    public function __construct()
-    {
-        //
-    }
-    
+
     public function assign($name, $value)
     {
         //
@@ -29,8 +24,13 @@ class View
         
     }
     
-    public function render($template)//*
+    public function render(string $template)
     {
-        //
+        ob_start();
+            $this->display($template);
+        $rezult = ob_get_contents();
+        ob_end_clean();
+        
+        return $rezult;
     }
 }

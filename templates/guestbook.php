@@ -113,11 +113,11 @@
                         
                         $guestBook->append($newNote)->save();?>
                     
-                        <!--<meta http-equiv="refresh" content="0; url=GuestBook.php?result=ok" />
+                        <meta http-equiv="refresh" content="0; url=GuestBook.php?result=ok" />
                     
                     <?php } elseif (isset($_POST['text'])) { ?>
                         
-                        <meta http-equiv="refresh" content="0; url=GuestBook.php?result=error" />-->
+                        <meta http-equiv="refresh" content="0; url=GuestBook.php?result=error" />
                     
                     <?php } ?>
                     
