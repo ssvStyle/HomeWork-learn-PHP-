@@ -72,7 +72,7 @@
                     
                             <hr>
                             
-                            <form action="upload.php" method="post" enctype="multipart/form-data">
+                            <form action="formHandlers/upload.php" method="post" enctype="multipart/form-data">
                                 
                                     <input type="file" class="form-control-file" id="exampleFormControlFile1" name="newFile"><br>
                                     

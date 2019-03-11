@@ -18,6 +18,9 @@
                                 <a class="nav-link" href="index.php">Главная<span class="sr-only">(current)</span></a>
                             </li>
                             <li class="nav-item active">
+                                <a class="nav-link" href="news.php">Новости<span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item active">
                                 <a class="nav-link" href="guestbook.php">Гостевая книга<span class="sr-only">(current)</span></a>
                             </li>
                             <li class="nav-item">

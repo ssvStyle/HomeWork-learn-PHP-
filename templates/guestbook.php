@@ -6,8 +6,8 @@
                     
                 <!--************Note block loop start************************************************-->
                     
-                <?php
-                $guestBook = new GuestBook();
+                <?php $guestBook = $data['guestBook'];
+                
                 foreach ($guestBook->getAllMsg() as $obj) { ?>
                     
                     <div class="media col-md-6 border box my-1 pl-0 p-1">
