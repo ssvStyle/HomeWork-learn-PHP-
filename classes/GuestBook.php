@@ -1,49 +1,43 @@
 <?php
 
+include_once 'Message.php';
 /**
  * Description of GuestBook
  *
  * @author ssv
  */
-class GuestBook 
+class GuestBook
 {
-    protected $pathToFile;
-    protected $allNotes = [];
+    protected $allMessage = [];
+    protected $pathToFile = './db/guestbook.db';
 
 
-    public function __construct($pathToFile)
+    public function __construct()
     {
-        $this->pathToFile = $pathToFile;
+        $allMessage = file($this->pathToFile, FILE_IGNORE_NEW_LINES);
         
-        $note = fopen($this->pathToFile, 'r');
-
-            while (!feof($note)) {
-                $this->allNotes[] = fgets($note);
-            }
-            fclose($note);
-    }
-
-
-    public function getData()
-    {
-        return $this->allNotes;   
+        foreach ($allMessage as $message){
+            $this->allMessage[] = new Message($message);
+        }
     }
     
-    public function append($newNote)
+    public function getAllMsg()
     {
-        $this->allNotes[] =  PHP_EOL.$newNote;
-        
-        return $this;
+        return $this->allMessage;
+    }
+    
+    public function append(Message $msg)
+    {
+        $this->allMessage[] = $msg;
     }
     
     public function save()
     {
-        $file = fopen($this->pathToFile, 'w');
+        $msgArray =[];
+        foreach ($this->allMessage as $message){
+            $msgArray[] = $message->showMsg();
+        }
         
-        $fwriteRezult = fwrite($file, implode($this->allNotes));
-        
-        fclose($file);
-        
-        return $fwriteRezult;
+        file_put_contents($this->pathToFile, implode(PHP_EOL, $msgArray));
     }
 }

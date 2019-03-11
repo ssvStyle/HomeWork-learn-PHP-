@@ -32,7 +32,7 @@ class View
     {
         ob_start();
             $this->display($template);
-        $rezult = ob_get_contents();
+            $rezult = ob_get_contents();
         ob_end_clean();
         
         return $rezult;

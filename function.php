@@ -1,7 +1,7 @@
 <?php
 
-define("USERS_DB", __DIR__ . '/users.db');
-define("LOG_DB", __DIR__ . '/log.db');
+define("USERS_DB", __DIR__ . '/db/users.db');
+//define("LOG_DB", __DIR__ . '/log.db');
 
 /****************Calculator start****************/
 

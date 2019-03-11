@@ -8,3 +8,4 @@ include_once __DIR__ . '/classes/View.php';
 $guestBook = new View();
 
 $guestBook->display('guestbook');
+//var_dump($_POST);

@@ -6,9 +6,9 @@
                     
                 <!--************Note block loop start************************************************-->
                     
-                <?php $guestBook = new GuestBook('./guestbook.db'); 
-                
-                foreach ($guestBook->getData() as $note) { ?>
+                <?php
+                $guestBook = new GuestBook();
+                foreach ($guestBook->getAllMsg() as $obj) { ?>
                     
                     <div class="media col-md-6 border box my-1 pl-0 p-1">
 
@@ -17,80 +17,40 @@
                             
                             <div class="row"><h5 class="col flex-item-md-between mt-0 pt-0 text-info">Гость</h5><p class="col text-secondary flex-item-md-between text-right mt-0 pt-0 mb-0">15.02.2019</p></div>
                           
-                         <?php echo $note; ?>
+                         <?php echo $obj->showMsg(); ?>
                           
                         </div>
 
                     </div>
  
                     <?php } ?>
-                <!--************Note block loop end************************************************-->
+                
                 </div>
                 
                 
                 <div class="row col-md-6 pl-0 pr-0">
                     
-                    <form action="GuestBook.php" method="POST" class="col-md-6">
+                    <form action="formHandlers/addGBmsg.php" method="POST" class="col-md-6">
                         
-                    <div class="form-group col-md-6 pl-0">
-                        <label for="formGroupExampleInput">Ваше имя</label>
-                        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="You name" name="name">
-                    </div>
+                        <div class="form-group col-md-6 pl-0">
+                            <label for="formGroupExampleInput">Ваше имя</label>
+                            <input type="text" class="form-control" id="formGroupExampleInput" placeholder="You name" name="name">
+                        </div>
+
+                        <div class="form-group col-md-6 pl-0">
+                            <label for="inputEmail" class="sr-only">Email</label>
+                            <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="" name="email">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleFormControlTextarea1">Ваше сообщение</label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="text"></textarea>
+                        </div>
                         
-                    <div class="form-group col-md-6 pl-0">
-                        <label for="inputEmail" class="sr-only">Email</label>
-                        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="" autofocus="" name="email">
-                    </div>
-                        
-                    <div class="form-group">
-                        <label for="exampleFormControlTextarea1">Ваше сообщение</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="text"></textarea>
-                    </div>
-                    
+                        <button class="btn btn-lg btn-primary btn-block" type="submit" name="send">Отправить</button>
                   
-                  
-                  <button class="btn btn-lg btn-primary btn-block" type="submit">Отправить</button>
-                  
-                </form>
+                    </form>
                     
-                    <!--************Result (Add note) block start************************************************-->
-                    
-                    <?php 
-                        $newNote = !empty($_POST['text']) ? htmlspecialchars(trim($_POST['text'])) : '';
-                        $result = 0;
-                    
-                    if (strlen($newNote) > 5) {
-                        
-                        $guestBook->append($newNote)->save();?>
-                    
-                        <meta http-equiv="refresh" content="0; url=GuestBook.php?result=ok" />
-                    
-                    <?php } elseif (isset($_POST['text'])) { ?>
-                        
-                        <meta http-equiv="refresh" content="0; url=GuestBook.php?result=error" />
-                    
-                    <?php } ?>
-                    
-                    <!--************Result (Add note) block end************************************************-->
-                    
-                    <!--************Add note error block start************************************************-->
-                    <?php if (isset($_GET['result'])) {
-                        $result = $_GET['result'];
-                    } ?>
-                        
-                    <?php if ($result === 'ok') { ?>
-                        
-                        <div class="row col-md-6 alert alert-success h-25 mx-0 justify-content-center" role="alert">Запись добавленна))</div>
-                    
-                    <?php } elseif ($result === 'error') { ?>
-                    
-                        <div class="row col-md-6 alert alert-warning h-25 mx-0 p-2" role="alert">Ошибка: Пустое поле или слишком короткое....</div>
-                    
-                    <?php } ?>
-                    
-                        
-                        <!--************Add note error block end************************************************-->
-                        
                 </div>
                 
             </div>
