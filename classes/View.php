@@ -16,6 +16,7 @@ class View
     public function display(string $template)
     {
         $data = $this->data;
+        
         if (file_exists('./templates/' . $template . '.php')){
             include_once './templates/header.php';
             include_once './templates/' . $template . '.php';

@@ -1,11 +1,14 @@
-<?php
+<?php session_start();
+include_once '../function.php';
+checkCookie();
 
-var_dump($_POST);
+include_once '../classes/Message.php';
+include_once '../classes/GuestBook.php';
 
-        /*$message = new Message($_POST[]);
+        $message = new Message($_POST['text']);
         $guestbook = new GuestBook();
         
         $guestbook->append($message);
         $guestbook->save();
 
-        header('location: /');*/
+        header('location: http://localhost/HomeWork/guestbook.php');
