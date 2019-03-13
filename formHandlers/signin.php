@@ -25,9 +25,9 @@ $button = isset($_POST['button']) && $_POST['button'] === 'submit';
                 $_SESSION['id'] = sha1($userData['id']);
                 $_SESSION['name'] = $userData['name'];
            
-                    if ($rememberMe && getUserIdByCookieUId() == NULL){
+                    if ($rememberMe){
 
-                        setcookie('uID', sha1($userData['id']), time() + 604800);
+                        setcookie('uID', sha1($userData['id']), time() + 604800, '/');
 
                     }
                     

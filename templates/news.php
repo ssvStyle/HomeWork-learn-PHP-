@@ -12,7 +12,7 @@
             
             <?php echo $article->getTime();?> - 
             <a href="news.php?id=<?php echo $article->getId();?>"><?php echo $article->getHeader();?></a>
-            <p class="pl-5 ml-2"><?php echo mb_substr($article->getArticle(), 0, 150);?> ....</p>
+            <p class="pl-5 ml-2"><?php echo mb_substr($article->getArticle(), 0, 170);?> ....</p>
             <?php } ?>
                 </div>
             </div>
