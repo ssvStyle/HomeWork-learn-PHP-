@@ -9,7 +9,7 @@ include_once 'Message.php';
 class GuestBook
 {
     protected $allMessage = [];
-    protected $pathToFile ='/opt/lampp/htdocs/HomeWork/db/guestbook.db';
+    protected $pathToFile = __DIR__ . '/./../db/guestbook.db';
 
 
     public function __construct()
