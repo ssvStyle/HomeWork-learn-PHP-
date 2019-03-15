@@ -14,19 +14,17 @@
 class Article
 {
     public $id;
-    protected $date;
+    protected $author;
     protected $time;
     protected $header;
     protected $article;
 
     public function __construct($article)
     {
-        $array = explode( '-|-' ,$article);
-        $this->id = $array[0];
-        $this->date = $array[1];
-        $this->time = $array[2];
-        $this->header = $array[3];
-        $this->article = $array[4];
+        $this->id = $article['id'];
+        $this->author = $article['author'];
+        $this->header = $article['header'];
+        $this->article = $article['article'];
     }
     
     public function getId()
@@ -34,9 +32,9 @@ class Article
         return $this->id;
     }
     
-    public function getDate()
+    public function getAuthor()
     {
-        return $this->date;
+        return $this->author;
     }
     
     public function getTime()

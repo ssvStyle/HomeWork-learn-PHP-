@@ -1,6 +1,7 @@
 <?php
 
 include_once 'Article.php';
+include_once __DIR__ . '/../app/models/DB.php';
 /**
  * Description of News
  *
@@ -9,18 +10,18 @@ include_once 'Article.php';
 class News
 {
     protected $news = [];
-    protected $pathToFile = '/opt/lampp/htdocs/HomeWork/db/news.db';
 
 
     public function __construct()
     {
-        $allNews = file($this->pathToFile, FILE_IGNORE_NEW_LINES);
+        
+        $db = new DB;
+        $allNews = $db->query('SELECT * FROM news', []);
         
         foreach ($allNews as $article) {
-            
-            $this->news[] = new Article($article);
-            
+            $this->news[$article['id']] = new Article($article);
         }
+        
     }
     
     public function getNews()
@@ -28,8 +29,12 @@ class News
         return $this->news;
     }
     
-    public function getNewsById($id)
+    public function getNewsById(int $id)
     {
-        return $this->news[$id];
+        if (array_key_exists($id, $this->news)){
+            return $this->news[$id];
+        }
+        
+        return reset($this->news);
     }
 }

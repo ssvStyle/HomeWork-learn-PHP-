@@ -10,7 +10,7 @@ $index = new View();
 $news = new News;
 
 if (isset($_GET['id'])) {
-    $index->assign('article', $news->getNewsById($_GET['id']));
+    $index->assign('article', $news->getNewsById((int)($_GET['id'])));
     $index->display('article');
 } else {
     $index->assign('news', $news);

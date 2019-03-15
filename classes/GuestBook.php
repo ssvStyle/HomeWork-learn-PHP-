@@ -1,6 +1,7 @@
 <?php
 
 include_once 'Message.php';
+include_once __DIR__ . '/../app/models/DB.php';
 /**
  * Description of GuestBook
  *
@@ -9,16 +10,19 @@ include_once 'Message.php';
 class GuestBook
 {
     protected $allMessage = [];
-    protected $pathToFile = __DIR__ . '/./../db/guestbook.db';
-
+    protected $db;
+    protected $newMsg = [];
 
     public function __construct()
     {
-        $allMessage = file($this->pathToFile, FILE_IGNORE_NEW_LINES);
         
-        foreach ($allMessage as $message){
+        $this->db = new DB();
+        $GBmsg = $this->db->query('SELECT DateTime, name, message FROM guestbook ORDER by DateTime DESC', []);
+        
+        foreach ($GBmsg as $message){
             $this->allMessage[] = new Message($message);
         }
+        
     }
     
     public function getAllMsg()
@@ -28,16 +32,11 @@ class GuestBook
     
     public function append(Message $msg)
     {
-        $this->allMessage[] = $msg;
+        $this->newMsg = $msg->getNameAndMsg();
     }
     
     public function save()
     {
-        $msgArray =[];
-        foreach ($this->allMessage as $message){
-            $msgArray[] = $message->showMsg();
-        }
-        
-        file_put_contents($this->pathToFile, implode(PHP_EOL, $msgArray));
+        $this->db->query('INSERT INTO guestbook (name, message) VALUES (:name, :message)', $this->newMsg);
     }
 }

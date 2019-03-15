@@ -5,10 +5,11 @@ checkCookie();
 include_once '../classes/Message.php';
 include_once '../classes/GuestBook.php';
 
-        $message = new Message($_POST['text']);
+var_dump($_POST);
+        $message = new Message($_POST);
         $guestbook = new GuestBook();
         
         $guestbook->append($message);
         $guestbook->save();
-
+        //var_dump($guestbook->save());
         header('location: http://localhost/HomeWork/guestbook.php');

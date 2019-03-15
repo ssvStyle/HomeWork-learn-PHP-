@@ -6,15 +6,30 @@
  */
 class Message
 {
-    protected $message;
+    protected $message = [];
     
     public function __construct($msg)
     {
         $this->message = $msg;
     }
     
-    public function showMsg()
+    public function getMsg()
     {
-        return $this->message;
+        return $this->message['message'];
+    }
+    
+    public function getName()
+    {
+        return $this->message['name'];
+    }
+    
+    public function getDate()
+    {
+        return $this->message['DateTime'];
+    }
+    
+    public function getNameAndMsg()
+    {
+        return ['name' => $this->getName(), 'message' => $this->getMsg()];
     }
 }
